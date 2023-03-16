@@ -6,6 +6,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const connectToDatabase = require('./config/database');
 
 const homeController = require('./controllers/homeController');
+const homeRoutes = require('./routes/homeRoutes');
 
 const app = express();
 
@@ -18,6 +19,8 @@ const store = new MongoDBStore({
   uri: process.env.MONGODB_URI,
   collection: 'accounts'
 });
+
+app.use('/', homeRoutes);
 
 store.on('error', (err) => {
   console.error(err);
@@ -54,4 +57,4 @@ connectToDatabase()
   .catch((err) => {
     console.error(err);
     process.exit(1);
-  });
+});

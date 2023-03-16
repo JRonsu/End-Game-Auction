@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>EndGame Auction - Classes</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <main>
+      <% classNames.forEach(function(className) { %>
+        <button><%= className %></button>
+      <% }); %>
+    </main>
+    
+    <%- include('./partials/footer.ejs') %>
+    
+    <script src="/js/style.js"></script>
+  </body>
+</html>
