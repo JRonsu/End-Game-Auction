@@ -13,6 +13,8 @@ body {
     background-repeat: no-repeat;
 }
 
+/* header section */
+
 li, a, button {
     font-family: 'Marcellus', serif;
     font-weight: 500;
@@ -29,20 +31,6 @@ header {
     background: linear-gradient(to top, #000000, #2e1335);
   }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background-color: black;
-    height: 40px;
-}
-  
-  footer p {
-    color: white;
-    padding: 10px 0;
-}
 
 .logo {
     max-width: 200px;
@@ -138,6 +126,54 @@ footer {
 .hamburger.is-active span:nth-child(3) {
     transform: translate(-3px, 3px) rotate(-45deg);
 }
+
+/* footer section */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: black;
+    height: 40px;
+}
+  
+  footer p {
+    color: white;
+    padding: 10px 0;
+}
+
+
+/* Class View section */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 800px;
+    height: 100%;
+  }
+  
+.Classes {
+    margin: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+.Classes:hover {
+    background-color: #2e6da4;
+}
+
+
+
+
 
 
 @media (max-width: 770px) {

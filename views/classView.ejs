@@ -10,10 +10,12 @@
 
     <main>
       <% classNames.forEach(function(className) { %>
-        <button><%= className %></button>
+        <a href="/classView/<%= className %>">
+        <button class="Classes"><%= className %></button>
+        </a>
       <% }); %>
     </main>
-    
+
     <%- include('./partials/footer.ejs') %>
     
     <script src="/js/style.js"></script>

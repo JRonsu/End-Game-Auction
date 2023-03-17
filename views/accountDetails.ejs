@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>EndGame Auction - <%= account.Class %> </title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <main>
+      <h1><%= account.Server %> ~ <%= account.Level %> ~ <%= account["Gear Score"] %></h1>
+      <ul>
+        <li>Level: <%= account.Level %></li>
+        <li>AP: <%= account.Ap %></li>
+        <li>DP: <%= account.Dp %></li>
+        <li>Silver: <%= account.Silver %></li>
+        <li>Pearls: <%= account.Pearls %></li>
+      </ul>
+    </main>
+
+
+    <%- include('./partials/footer.ejs') %>
+
+    <script src="/js/style.js"></script>
+  </body>
+</html>
