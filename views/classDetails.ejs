@@ -9,16 +9,23 @@
     <%- include('./partials/header.ejs') %>
 
     <main>
-        <h1><%= className %> Details</h1>
-        <ul>
+        <h1 class="class-title"><%= className %></h1>
+        <div class="account-cards">
           <% accounts.forEach(function(account) { %>
-            <li>
-                <a href="/classView/<%= className %>/<%= account._id %>">
-                <%= account.Server %> ~ <%= account["Level"] %> ~ <%= account["Gear Score"] %>
-                </a>
-            </li>          
+            <div class="account-card">
+              <h2><%= account.Server %></h2>
+              <p><strong>Level:</strong> <%= account.Level %></p>
+              <p><strong>Gear Score:</strong> <%= account["Gear Score"] %></p>
+              <a href="/classView/<%= className %>/<%= account._id %>">View Details</a>
+             
+            </div>
+          <% }); %>
+        </div>
+        <div class="video-container">
+            <% accounts.forEach(function(account) { %>
+              <iframe src="<%= account.videoUrl %>" frameborder="0" allowfullscreen></iframe>
             <% }); %>
-        </ul>
+          </div>
       </main>
       
     <%- include('./partials/footer.ejs') %>
