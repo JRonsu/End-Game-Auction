@@ -8,7 +8,10 @@ const MongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGODB_URI;
 
 // Create a new MongoClient instance with specified connection options
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 /**
  * Connects to the MongoDB database and returns the database object.
@@ -16,17 +19,17 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
  * @returns {Promise} A Promise that resolves to the database object.
  */
 module.exports = async function connect() {
-  try {
-    // Attempt to connect to the MongoDB server
-    await client.connect();
-    console.log('Connected to MongoDB Atlas');
+    try {
+        // Attempt to connect to the MongoDB server
+        await client.connect();
+        console.log('Connected to MongoDB Atlas');
 
-    // Return the database object
-    const db = client.db();
-    return db;
-  } catch (err) {
-    // If an error occurs, log the error and re-throw it
-    console.error(err);
-    throw err;
-  }
+        // Return the database object
+        const db = client.db();
+        return db;
+    } catch (err) {
+        // If an error occurs, log the error and re-throw it
+        console.error(err);
+        throw err;
+    }
 };

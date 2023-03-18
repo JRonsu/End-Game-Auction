@@ -5,3 +5,4 @@ hamburger.addEventListener("click", function () {
   navLinks.classList.toggle("open");
   hamburger.classList.toggle("is-active");
 });
+

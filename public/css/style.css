@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -16,7 +16,9 @@ body {
 
 /* header section */
 
-li, a, button {
+li,
+a,
+button {
     font-family: 'Marcellus', serif;
     font-weight: 500;
     font-size: 16px;
@@ -28,9 +30,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: -20px 5%; /* reduce the top and bottom padding */
+    padding: -20px 5%;
+    /* reduce the top and bottom padding */
     background: linear-gradient(to top, #000000, #2e1335);
-  }
+}
 
 
 .logo {
@@ -60,12 +63,12 @@ header {
 .cta {
     margin-left: 10px;
 }
-  
+
 .cta {
     display: inline-block;
     margin: 0 50px;
-  }
-  
+}
+
 .sign {
     padding: 9px 25px;
     background-color: rgba(233, 79, 223, 0.251);
@@ -139,8 +142,8 @@ footer {
     background-color: black;
     height: 40px;
 }
-  
-  footer p {
+
+footer p {
     color: white;
     padding: 10px 0;
 }
@@ -155,8 +158,8 @@ main {
     margin: auto;
     max-width: 800px;
     height: 100%;
-  }
-  
+}
+
 .Classes {
     margin: 20px;
     padding: 10px 20px;
@@ -167,7 +170,7 @@ main {
     font-size: 16px;
     cursor: pointer;
 }
-  
+
 .Classes:hover {
     background-color: #2e6da4;
 }
@@ -180,16 +183,16 @@ main {
     font-weight: bold;
     text-align: center;
     margin: auto;
-  }
+}
 
-  .class-title {
+.class-title {
     position: absolute;
-    top: 50%;
+    top: 390px;
     left: 50%;
     transform: translate(-50%, -50%);
     /* add the following rule */
     z-index: 1;
-  }
+}
 
 .account-cards {
     position: relative;
@@ -197,9 +200,9 @@ main {
     justify-content: center;
     align-items: center;
     min-width: 500px;
-  }
-  
-  .account-card {
+}
+
+.account-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -212,64 +215,66 @@ main {
     height: 200px;
     text-align: center;
     background-color: #fff;
-  }
-  
-  .account-card h2 {
+}
+
+.account-card h2 {
     font-size: 24px;
     margin-bottom: 5px;
-  }
-  
-  .account-card p {
+}
+
+.account-card p {
     font-size: 16px;
     margin-bottom: 5px;
-  }
-  
-  .account-card a {
+}
+
+.account-card a {
     margin-top: 10px;
     padding: 5px 10px;
     background-color: #1c1c1c;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-  }
-  
-  .account-card a:hover {
-    background-color: #343434;
-  }
+}
 
-  .account-card li {
+.account-card a:hover {
+    background-color: #343434;
+}
+
+.account-card li {
     color: #000;
     list-style: none;
-  }
+}
 
-  .buy-button {
+.buy-button {
     color: #000;
-  }
+}
 
-  .video-container {
+.video-container {
     margin-top: 40px;
     margin-bottom: 20px;
     max-width: 800px;
-  }
+}
 
-  .video-container iframe {
+.video-container iframe {
     width: 100%;
     height: 400px;
-  }
-  /* Media query for screens smaller than 600px */
+}
+
+/* Media query for screens smaller than 600px */
 @media (max-width: 600px) {
+
     /* Reset the minimum width for the card container */
     .account-cards {
-      min-width: auto;
+        min-width: auto;
     }
-    
+
     /* Center the cards vertically */
     .account-cards {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-  }
+}
 
 /* Center the sold-container */
 .sold-container {
@@ -278,17 +283,18 @@ main {
     justify-content: center;
     align-items: center;
     height: 100%;
-  }
-  
-  /* Style the h2 and p */
-  h2, p {
+}
+
+/* Style the h2 and p */
+h2,
+p {
     text-align: center;
     color: white;
     text-shadow: 2px 2px 4px black;
-  }
-  
-  /* Style the button */
-  back-to-home  {
+}
+
+/* Style the button */
+back-to-home {
     margin-top: 20px;
     background-color: black;
     color: white;
@@ -297,50 +303,114 @@ main {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-  }
+}
+
 .back-button {
     background-color: #000;
 }
 
 
+.welcome {
+    margin: 0 auto;
+    color: #fff;
+    text-shadow: 2px 2px 2px #000;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+}
+
+/* Banner container */
+.banner-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.banner-container h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.image-banner {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+
+}
+
+.image-banner img {
+    min-width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    object-fit: cover;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .banner-container h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-container {
+        height: 200px;
+    }
+
+    .banner-container h1 {
+        font-size: 1.2rem;
+    }
+}
+
+
 @media (max-width: 770px) {
     .hamburger {
-      display: block;
+        display: block;
     }
-  }
-  
-  @media (min-width: 768px) {
+}
+
+@media (min-width: 768px) {
     .hamburger {
-      display: none;
+        display: none;
     }
-  }
-  
+}
+
 
 @media screen and (max-width: 770px) {
     .nav_links {
-      display: none;
-      position: absolute;
-      top: 0px;
-      left: 0;
-      right: 0;
-      padding-top: 30px;
-      border-bottom-width: 30px;
-      background-color: black;
-      text-align: center;
-}
-    
+        display: none;
+        position: absolute;
+        top: 0px;
+        left: 0;
+        right: 0;
+        padding-top: 30px;
+        border-bottom-width: 30px;
+        background-color: black;
+        text-align: center;
+    }
+
     .nav_links.open {
-      display: block;
+        display: block;
     }
-    
+
     .nav_links li {
-      display: block;
-      margin-bottom: 10px;
+        display: block;
+        margin-bottom: 10px;
     }
-    
+
     .nav_links li a {
-      color: white;
-      font-size: 20px;
+        color: white;
+        font-size: 20px;
     }
 }
-  
