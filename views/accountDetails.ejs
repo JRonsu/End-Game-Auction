@@ -21,6 +21,9 @@
         <div class="buy-container">
           <span class="price">Price: $<%= account.price %></span>
           <button id="buy-button" class="buy-button"><a href="/sold">Buy Now</a></button>
+          <button class="edit-button">
+          <a href="/accounts/<%= account._id %>/edit">Edit</a>
+          </button>
         </div>
       </div>
     </main>

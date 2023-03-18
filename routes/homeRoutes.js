@@ -203,6 +203,79 @@ router.get('/sold', async (req, res) => {  // Handles GET requests for '/sold' e
       res.render('loggedSeller', { user: req.session.user, accounts: accounts }); // Render the logged-in seller page with the user object and accounts belonging to the user
     });
     
+
+    router.get('/update/:id', async (req, res) => {
+        try {
+          const accountId = req.params.id;
+          const db = await connectToDatabase();
+          const accountsCollection = db.collection('accounts');
+          const account = await accountsCollection.findOne({ _id: ObjectId(accountId) });
+      
+          if (!account) {
+            return res.status(404).send('Account not found');
+          }
+      
+          res.render('update', { account });
+        } catch (err) {
+          console.error(err);
+          res.status(500).send('Internal server error');
+        }
+      });
+      
+      router.post('/update/:id', async (req, res) => {
+        try {
+          const accountId = req.params.id;
+          const { server, class: className, level, ap, dp, gearScore, silver, pearls, price } = req.body;
+          const db = await connectToDatabase();
+          const accountsCollection = db.collection('accounts');
+      
+          const result = await accountsCollection.updateOne(
+            { _id: ObjectId(accountId) },
+            {
+              $set: {
+                server,
+                Class: className,
+                Level: parseInt(level),
+                Ap: parseInt(ap),
+                Dp: parseInt(dp),
+                gearScore: parseInt(gearScore),
+                Silver: parseInt(silver),
+                Pearls: parseInt(pearls),
+                price: parseFloat(price),
+                sold: false
+              }
+            }
+          );
+      
+          if (result.modifiedCount === 0) {
+            return res.status(404).send('Account not found');
+          }
+      
+          res.redirect(`/accounts/${accountId}`);
+        } catch (err) {
+          console.error(err);
+          res.status(500).send('Internal server error');
+        }
+      });
+
+      
+      router.get('/accounts/:id/edit', async (req, res) => {
+        try {
+          const db = await connectToDatabase();
+          const accountsCollection = db.collection('accounts');
+          const account = await accountsCollection.findOne({ _id: new ObjectId(req.params.id) });
+      
+          if (!account) {
+            return res.status(404).send('Account not found');
+          }
+      
+          res.render('edit', { account, user: req.session.user }); // Pass the user object here
+        } catch (err) {
+          console.error(err);
+          res.status(500).send('Internal server error');
+        }
+      });
+      
     
   module.exports = router;
   

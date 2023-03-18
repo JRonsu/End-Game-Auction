@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Account</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <main>
+      <h1>Edit Account</h1>
+      <form action="/update/<%= account._id %>" method="post">
+        <!-- Add input fields for the account properties you want users to be able to edit -->
+        <!-- For example: -->
+        <label for="server">Server:</label>
+        <input type="text" name="server" id="server" value="<%= account.server %>" required>
+        <!-- Add more input fields for other properties -->
+
+        <button type="submit">Update Account</button>
+      </form>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>
