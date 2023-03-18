@@ -237,6 +237,15 @@ main {
     background-color: #343434;
   }
 
+  .account-card li {
+    color: #000;
+    list-style: none;
+  }
+
+  .buy-button {
+    color: #000;
+  }
+
   .video-container {
     margin-top: 40px;
     margin-bottom: 20px;
@@ -262,7 +271,36 @@ main {
     }
   }
 
-
+/* Center the sold-container */
+.sold-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  /* Style the h2 and p */
+  h2, p {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+  }
+  
+  /* Style the button */
+  back-to-home  {
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+.back-button {
+    background-color: #000;
+}
 
 
 @media (max-width: 770px) {

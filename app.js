@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const connectToDatabase = require('./config/database');
+const { getAccount } = require('./models/database-manager');
 
 const homeController = require('./controllers/homeController');
 const homeRoutes = require('./routes/homeRoutes');
@@ -17,10 +18,8 @@ app.set('view engine', 'ejs');
 // Set up the session store
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI,
-  collection: 'accounts'
+  collection: 'sessions'
 });
-
-app.use('/', homeRoutes);
 
 store.on('error', (err) => {
   console.error(err);
@@ -44,7 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up routes
-app.use('/', homeController);
+app.use('/', homeRoutes); // Use the routes defined in homeRoutes
 
 // Connect to MongoDB Atlas and start the server
 connectToDatabase()
@@ -57,4 +56,4 @@ connectToDatabase()
   .catch((err) => {
     console.error(err);
     process.exit(1);
-});
+  });

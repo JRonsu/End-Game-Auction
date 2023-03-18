@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>EndGame Auction - Sell</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <%- include('./partials/header.ejs') %>
+
+    <main>
+      <div class="sell-form-container">
+        <h2>Sell Your Account</h2>
+        <form action="/sell" method="POST" enctype="application/x-www-form-urlencoded">
+          <input type="text" name="server" placeholder="Server" required>
+          <input type="text" name="class" placeholder="Class" required>
+          <input type="number" name="level" placeholder="Level" required>
+          <input type="number" name="ap" placeholder="AP" required>
+          <input type="number" name="dp" placeholder="DP" required>
+          <input type="number" name="gearScore" placeholder="Gear Score" required>
+          <input type="number" name="silver" placeholder="Silver" required>
+          <input type="number" name="pearls" placeholder="Pearls" required>
+          <input type="number" name="price" placeholder="Price" required>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>

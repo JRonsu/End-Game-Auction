@@ -4,86 +4,129 @@ const databaseManager = require('../models/database-manager');
 const connectToDatabase = require('../config/database');
 const { ObjectId } = require('mongodb');
 
-const account = {
-    Server: 'Server Name',
-    Level: 50,
-    'Gear Score': 500,
-    Ap: 200,
-    Dp: 300,
-    Silver: 1000,
-    Pearls: 500,
-    Skins: ['Skin 1', 'Skin 2', 'Skin 3']
-  };
-  
-
-
-// Render the home page
 router.get('/', async (req, res) => {
   try {
-    // Call the getAllAccounts function of the database manager to get all accounts from the database
     const accounts = await databaseManager.getAllAccounts();
-
-    // Render the 'home' view and pass the accounts data to it
     res.render('home', { accounts });
   } catch (err) {
     console.error(err);
-    // If an error occurs, send a 500 error status and message to the client
     res.status(500).send('Internal server error');
   }
 });
 
-// Render the class view page
 router.get('/classView', async (req, res) => {
   try {
-    // Call the getAllClasses function of the database manager to get all unique class names from the database
     const classNames = await databaseManager.getAllClasses();
-
-    // Render the 'classView' view and pass the classNames data to it
     res.render('classView', { classNames });
   } catch (err) {
     console.error(err);
-    // If an error occurs, send a 500 error status and message to the client
     res.status(500).send('Internal server error');
   }
 });
 
 router.get('/classView/:className', async (req, res) => {
-    try {
-      const className = req.params.className;
-      const db = await connectToDatabase();
-      const accountsCollection = db.collection('accounts');
-      const accounts = await accountsCollection.find({ Class: className }).toArray();
-      res.render('classDetails', { className, accounts });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal server error');
-    }
+  try {
+    const className = req.params.className;
+    const db = await connectToDatabase();
+    const accountsCollection = db.collection('accounts');
+    const accounts = await accountsCollection.find({ Class: className }).toArray();
+    res.render('classDetails', { className, accounts });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error');
+  }
 });
 
 router.get('/classView/:className/:accountId', async (req, res) => {
+  try {
+    const className = req.params.className;
+    const accountId = req.params.accountId;
+    const objectId = new ObjectId(accountId);
+    const db = await connectToDatabase();
+    const accountsCollection = db.collection('accounts');
+    const account = await accountsCollection.findOne({ _id: objectId });
+    res.render('accountDetails', { className, account });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal server error');
+  }
+});
+
+router.get('/account/:className', async (req, res) => {
     try {
       const className = req.params.className;
-      const accountId = req.params.accountId;
-  
-      // Create an ObjectId instance using the accountId parameter
-      const objectId = new ObjectId(accountId);
-  
-      const db = await connectToDatabase();
-      const accountsCollection = db.collection('accounts');
-      const account = await accountsCollection.findOne({ _id: objectId });
-  
-      res.render('accountDetails', { className, account });
+      const account = await databaseManager.getAccount(className);
+      const isSoldOut = account.price === 0 || account.sold === true;
+      res.render('accountDetails', { account, className, isSoldOut });
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal server error');
     }
   });
   
-
-
+  // Add this route at the bottom of your homeRoute.js file
+router.get('/buy/:accountId', async (req, res) => {
+    try {
+      const accountId = req.params.accountId;
+      const objectId = new ObjectId(accountId);
+      const db = await connectToDatabase();
+      const accountsCollection = db.collection('accounts');
   
-
+      await accountsCollection.deleteOne({ _id: objectId });
   
+      res.redirect('/sold');
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal server error');
+    }
+  });
+  
+  
+  router.get('/sold', async (req, res) => {
+    try {
+      const soldAccounts = await databaseManager.getSoldAccounts();
+      res.render('sold', { soldAccounts });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal server error');
+    }
+  });
 
+  router.get('/sell', (req, res) => {
+    res.render('sell');
+  });
+
+  router.post('/sellAccount', async (req, res) => {
+    try {
+      const { server, class: className, level, ap, dp, gearScore, silver, pearls, price } = req.body;
+      const db = await connectToDatabase();
+      const accountsCollection = db.collection('accounts');
+  
+      const account = {
+        server,
+        Class: className,
+        Level: parseInt(level),
+        Ap: parseInt(ap),
+        Dp: parseInt(dp),
+        gearScore: parseInt(gearScore),
+        Silver: parseInt(silver),
+        Pearls: parseInt(pearls),
+        price: parseFloat(price),
+        sold: false
+      };
+  
+      await accountsCollection.insertOne(account);
+  
+      res.redirect('/selling');
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal server error');
+    }
+  });
+  
+  router.get('/selling', (req, res) => {
+    res.render('selling', { message: 'Congratulations! Your account is now up for auction.' });
+  });
+  
+  
 module.exports = router;
-

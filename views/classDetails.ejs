@@ -13,9 +13,9 @@
         <div class="account-cards">
           <% accounts.forEach(function(account) { %>
             <div class="account-card">
-              <h2><%= account.Server %></h2>
+              <h2><%= account.Class %></h2> <!-- Display the Class name -->
               <p><strong>Level:</strong> <%= account.Level %></p>
-              <p><strong>Gear Score:</strong> <%= account["Gear Score"] %></p>
+              <p><strong>Gear Score:</strong> <%= account.gearScore %></p> <!-- Use camelCase for Gear Score -->
               <a href="/classView/<%= className %>/<%= account._id %>">View Details</a>
              
             </div>
@@ -27,6 +27,9 @@
             <% }); %>
           </div>
       </main>
+
+      <!-- Add this script block before the closing </body> tag -->
+  
       
     <%- include('./partials/footer.ejs') %>
     
