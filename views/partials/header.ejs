@@ -7,12 +7,15 @@
         <li><a href="/sell">Sell</a></li>           
       </ul>
     </nav>
-    <!--<a class="cta" href="/login"><button class="sign">Log In</button></a>-->
-    <a class="cta" href="/register"><button class="sign">Signup</button></a>
+    <% if (user) { %>
+      <a class="cta" href="/logout"><button class="sign">Log Out</button></a>
+    <% } else { %>
+      <a class="cta" href="/login"><button class="sign">Log In</button></a>
+      <a class="cta" href="/signup"><button class="sign">Signup</button></a>
+    <% } %>
     <button class="hamburger">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
 </header>
-  

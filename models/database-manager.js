@@ -45,9 +45,20 @@ async function getSoldAccounts() {
   return soldAccounts;
 }
 
+async function getAccounts(filter) {
+  console.log('Getting accounts with filter:', filter);
+  const db = await connectToDatabase();
+  const accountsCollection = db.collection('accounts');
+  const accounts = await accountsCollection.find(filter).toArray();
+  console.log('Accounts:', accounts);
+  return accounts;
+}
+
+
 // Export the functions to be used by other modules
 module.exports = {
   getAllAccounts,
   getAllClasses,
-  getSoldAccounts
+  getSoldAccounts,
+  getAccounts, // Add this line
 };

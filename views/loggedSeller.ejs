@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EndGame Auction - My Accounts</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('./partials/header.ejs') %>
+
+  <main>
+    <h1>My Accounts</h1>
+    <div class="account-cards">
+      <% accounts.forEach(function(account) { %>
+        <div class="account-card">
+          <h2><%= account.Class %></h2>
+          <p><strong>Level:</strong> <%= account.Level %></p>
+          <p><strong>Gear Score:</strong> <%= account.gearScore %></p>
+          <a href="/classView/<%= account.Class %>/<%= account._id %>">View Details</a>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+
+  <%- include('./partials/footer.ejs') %>
+  <script src="/js/style.js"></script>
+</body>
+</html>

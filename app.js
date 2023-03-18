@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
 const session = require('express-session');
+const mongoose = require('mongoose');
+
+
 const MongoDBStore = require('connect-mongodb-session')(session);
 const connectToDatabase = require('./config/database');
 const { getAccount } = require('./models/database-manager');
@@ -45,6 +48,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set up routes
 app.use('/', homeRoutes); // Use the routes defined in homeRoutes
 
+const mongooseOptions = {
+  serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+};
+
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error(err));
+  
 // Connect to MongoDB Atlas and start the server
 connectToDatabase()
   .then(() => {
